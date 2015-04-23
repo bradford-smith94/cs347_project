@@ -3,6 +3,7 @@
 # AbsenceCheck ac-attendance.py
 # "I pledge my honor that I have abided by the Stevens Honor System."
 #####################################################################
+from student import student
 
 #ac_attendance
 #this class is used to create and store a listOfStudents for taking attendance
