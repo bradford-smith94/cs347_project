@@ -19,10 +19,10 @@ class ac_notify:
 	def sender(recipient, student_name)
 	
 	def get_attendance()
-		attendance.listOfStudents
+		
 	
 	def get_admin()
-		return person
+		
 		
 	def get_email_body()
 	
