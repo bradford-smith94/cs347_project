@@ -8,16 +8,21 @@
 #this class is used to send the config file to absent students
 
 class ac_notify:
+	
 	#vars
 	attendance = ac_attendance();
-	admin = 
+	admin = person()
+	student_name = person()
+	recipient = person()
 	
-	def sender()
+	
+	def sender(recipient, student_name)
 	
 	def get_attendance()
-		attendance.listOfStudents;
+		attendance.listOfStudents
 	
 	def get_admin()
-	
+		return person
+		
 	def get_email_body()
 	
