@@ -18,7 +18,7 @@ class student(person):
 
     #pre:takes in a boolean here (True = student present, False = student absent)
     #post:sets the isHere variable to here
-    def set_attendance(here):
+    def set_attendance(self, here):
         if(here):
             isHere = True
         else:
@@ -26,5 +26,5 @@ class student(person):
 
     #pre:none
     #post:returns the isHere variable
-    def get_attendance():
+    def get_attendance(self):
         return self.isHere

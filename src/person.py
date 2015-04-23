@@ -14,10 +14,10 @@ class person(object):
 
     #pre:none
     #post:returns the name variable
-    def get_name():
+    def get_name(self):
         return self.name
 
     #pre:none
     #post:returns the email variable
-    def get_email():
+    def get_email(self):
         return self.email
