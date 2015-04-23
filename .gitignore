@@ -1,3 +1,8 @@
+# Temp files
 *.swp
 \#*
 *~
+
+# compiled files
+*.py[cod]
+__pycache__/
