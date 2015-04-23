@@ -16,21 +16,6 @@ class ac_notify:
 	admin = person()
 	student_name = student()
 	recipient = person()
-<<<<<<< HEAD
-	
-	
-	def sender(recipient, student_name)
-	
-	def get_attendance()
-		
-	
-	def get_admin()
-		
-		
-	def get_email_body()
-	
-=======
-
 
 	def sender(recipient, student_name):
 
@@ -42,4 +27,3 @@ class ac_notify:
 
 	def get_email_body():
 
->>>>>>> 821c426dae33b3c076e0516541d07b54f1f31acb
