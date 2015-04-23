@@ -3,15 +3,19 @@
 # AbsenceCheck student.py
 # "I pledge my honor that I have abided by the Stevens Honor System."
 #####################################################################
+from person import person
 
 class student(person):
-    isHere = true #assume a student is here until otherwise known
+
+    def __init__(self, name, email, here=True):
+        person.__init__(self, name, email)
+        self.isHere = here #assume a student is here until otherwise known
 
     def set_attendance(here):
         if(here):
-            isHere = true
+            isHere = True
         else:
-            isHere = false
+            isHere = False
 
     def get_attendance():
         return self.isHere

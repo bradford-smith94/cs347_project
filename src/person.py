@@ -4,8 +4,13 @@
 # "I pledge my honor that I have abided by the Stevens Honor System."
 #####################################################################
 
-class person:
-	def __init__(self, name, email):
-		self.name = name
-		self.email = email
+class person(object):
+    def __init__(self, name, email):
+        self.name = name
+        self.email = email
 
+    def get_name():
+        return self.name
+
+    def get_email():
+        return self.email
