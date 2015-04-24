@@ -12,7 +12,7 @@ from teacher import teacher
 class ac_config:
     #vars
     teacher
-    classDescrip
+    classDescrip = ""
 
     #pre:takes in a teacher t
     #post:sets the teacher variable to t
