@@ -30,7 +30,9 @@ class ac_notify:
     #pre:takes in a student recipient and an ac_config config
     #post:creates and returns a MIMEText email message
     def create_message(self, recipient, config):
-        msg = MIMEText(config.get_class_descrip())
+        greet = MIMEText("Dear %s \nHere is what you missed in class:\n" %(recipient.get_name()))
+        body = MIMEText(config.get_class_descrip())
+        msg = greet + body
         msg["Subject"] = "Missed Class"
         msg["From"] = config.get_teacher().get_email()
         msg["To"] = recipient.get_email()
