@@ -13,18 +13,25 @@ from person import person
 #this class is used to send the config file to absent students
 class ac_notify:
 
-    #pre:takes in a teacher sender, student recipient, and student_name?
-    #post:sends an email, to recipient from sender
-    def send(self, sender, recipient, student_name):
+    #pre:takes in an ac_config config and student recipient
+    #post:sends an email, to recipient from config.get_teacher
+    def send(self, config, recipient):
+        sender = config.get_teacher()
         server = smtplib.SMTP('smtp.gmail.com:587')
         server.starttls()
         server.login(sender.get_email(), sender.get_password())
-        message = create_message(recipient)
+        message = create_message(recipient, config)
         try:
             server.sendmail("email", recipient.get_email(), message.as_string)
         except:
             print("Message to %s did not send" %(recipient.get_name()))
         server.quit()
 
-    def create_message(self, recipient):
-        print("TODO")
+    #pre:takes in a student recipient and an ac_config config
+    #post:creates and returns a MIMEText email message
+    def create_message(self, recipient, config):
+        msg = MIMEText(config.get_class_descrip())
+        msg["Subject"] = "Missed Class"
+        msg["From"] = config.get_teacher().get_email()
+        msg["To"] = recipient.get_email()
+        return msg
