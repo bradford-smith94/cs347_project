@@ -14,4 +14,7 @@ def main():
     for s in attendance.get_listOfStudents():
         print("##Name: %s \t##Email: %s" %(s.get_name(), s.get_email()))
 
+    #desired output is of the form:
+    #"##Name: <student name>    ##Email: <student email>"
+    #for each student in the test.csv file in this directory
 main()

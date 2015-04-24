@@ -13,14 +13,12 @@ src/
             (where $ is your prompt and the command is surrounded in `)
             (and where <python> is the command to run python2 (this may differ
             from one machine to another))
+			-desired output is provided in commented in the test_*.py files
 doc/
 	-contains documentation files
-	-!out of date!
+	-contains uml diagrams
 tests/
 	-contains acceptance testing code
 	-cucumber features
         -!out of date!
             -does not yet have ruby step definitions
-emailer.py
-    -!!do not submit this!!
-    -this file is for our notes
