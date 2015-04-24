@@ -8,11 +8,11 @@ Project Structure
 src/
 	-contains all the source code
 	-contains unit tests for Assignment 3: first iteration
-		-run test_*.py files and look for desired output
-            -e.g. $`python2 src/test_people.py`
+		-cd into src and run test_*.py files and look for desired output
+            -e.g. $`<python> test_people.py`
             (where $ is your prompt and the command is surrounded in `)
-            (note: python2 command is used because python2 and python3 are
-                installed, your command to run python may differ)
+            (and where <python> is the command to run python2 (this may differ
+            from one machine to another))
 doc/
 	-contains documentation files
 	-!out of date!

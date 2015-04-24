@@ -3,6 +3,9 @@
 # AbsenceCheck ac-attendance.py
 # "I pledge my honor that I have abided by the Stevens Honor System."
 #####################################################################
+#import csv to read .csv files
+import csv
+#import student class
 from student import student
 
 #ac_attendance
@@ -11,12 +14,17 @@ class ac_attendance:
     listOfStudents = []
     listOfAbsentStudents = []
 
-    #pre:takes in a file f
+    #pre:takes in a csv file f
     #post:creates the listOfStudent variable from the students in the file
     def parse_file(self, f):
-        #open file f
-        #create new_student object for each student name and email found
-        listOfStudents.append(new_student)
+        with open(f, 'r') as csvfile:
+            lineReader = csv.reader(csvfile, delimiter=',')
+            for line in lineReader:
+                fn = line[0] #first name
+                ln = line[1] #last name
+                em = line[2] #email
+                new_student = student(" ".join([fn, ln]), em)
+                self.listOfStudents.append(new_student)
 
     #pre:none
     #post:returns the listOfStudents variable
