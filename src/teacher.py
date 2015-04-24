@@ -9,7 +9,7 @@ from person import person
 #teacher
 #this class provides the structure of a teacher
 #   teacher is a person with an email password
-class student(person):
+class teacher(person):
 
     #constructor
     def __init__(self, name, email, pw):
@@ -20,3 +20,4 @@ class student(person):
     #post:returns the variable password
     def get_password(self):
         return self.password
+        
