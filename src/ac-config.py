@@ -15,30 +15,30 @@ class ac_config:
 
     #pre:takes in a string n
     #post:sets the teacherName variable to n
-    def set_teacher_name(n):
+    def set_teacher_name(self, n):
         self.teacherName = n
 
     #pre:none
     #post:returns a string of the teacher's name
-    def get_teacher_name():
+    def get_teacher_name(self):
         return self.teacherName
 
     #pre:takes in a string e
     #post:sets the teacherEmail variable to e
-    def set_teacher_email(e):
+    def set_teacher_email(self, e):
         self.teacherEmail = e
 
     #pre:none
     #post:returns a string of the teacher's email address
-    def get_teacher_email():
+    def get_teacher_email(self):
         return self.teacherEmail
 
     #pre:takes in a string d
     #post:sets the classDescrip variable to d
-    def set_class_descrip(d):
+    def set_class_descrip(self, d):
         self.classDescrip = d
 
     #pre:none
     #post:returns a string of the class description
-    def get_class_descrip():
+    def get_class_descrip(self):
         return self.classDescrip

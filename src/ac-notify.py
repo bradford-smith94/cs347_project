@@ -17,13 +17,13 @@ class ac_notify:
 	student_name = student()
 	recipient = person()
 
-	def sender(recipient, student_name):
+	def sender(self, recipient, student_name):
 
-	def get_attendance():
+	def get_attendance(self):
 		attendance.get_listOfStudents
 
-	def get_admin():
+	def get_admin(self):
 		return person
 
-	def get_email_body():
+	def get_email_body(self):
 

@@ -8,7 +8,7 @@ from person import person
 
 #student
 #this class provides the structure of a student
-#   student is a person with attendance
+#   student is a person with a boolean for attendance
 class student(person):
 
     #constructor
