@@ -21,26 +21,42 @@ def main():
     class_descript = ""
     config = ac_config()
 
-    #promptig teacher to enter name
-    name = raw_input("please enter your name: ")
-    type(name)
+    #prompting teacher to enter name
+    #loop executes until user enters something (string cannot be empty)
+    while True:
+        name = raw_input("Please enter your name: ")
+        type(name)
+        if (len(name) > 0):
+            break
     teacher_name = name
 
     #prompting teacher to enter email
-    email = raw_input("please enter your email: ")
-    type(email)
+    #loop executes until user enters something (string cannot be empty)
+    while True:
+        email = raw_input("Please enter your email: ")
+        type(email)
+        if (len(email) > 0):
+            break
     teacher_email = email
 
     #prompting the teacher to enter email password
-    password = raw_input("please enter your email password: ")
-    type(password)
+    #loop executes until user enters something (string cannot be empty)
+    while True:
+        password = raw_input("Please enter your email password: ")
+        type(password)
+        if (len(password) > 0):
+            break
     teacher_pw = password
 
     teacher1 = teacher(teacher_name, teacher_email, teacher_pw)
 
     #prompting teacher to enter a class description
-    classDescrip = raw_input("Please enter todays topics covered, assignments and/or related material: ")
-    type(classDescrip)
+    #loop executes until user enters something (string cannot be empty)
+    while True:
+        classDescrip = raw_input("Please enter todays topics covered, assignments and/or related material: ")
+        type(classDescrip)
+        if (len(classDescrip) > 0):
+            break
     class_descript = classDescrip
 
     #initialize the config object
