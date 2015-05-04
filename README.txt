@@ -13,12 +13,13 @@ src/
             (where $ is your prompt and the command is surrounded in `)
             (and where <python> is the command to run python2 (this may differ
             from one machine to another))
-			-desired output is provided in commented in the test_*.py files
+			-desired output is provided in comments in the test_*.py files
 doc/
 	-contains documentation files
 	-contains uml diagrams
 tests/
 	-contains acceptance testing code
 	-cucumber features
-        -!out of date!
-            -does not yet have ruby step definitions
+	-to run cucumber features: stay here in the project root
+		-e.g. $`cucumber tests/Absent.feature`
+		(where $ is your prompt and the command is surrounded in `)
