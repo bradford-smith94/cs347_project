@@ -31,3 +31,7 @@ class ac_stats:
     #   notifies the admin
     def save_stats(self, lst, file="cumulative.csv"):
         print("TODO")
+        #for each student in list of students print in csv
+        #if student is absent incremenet absences
+        #read absences from csv parse to int and increment
+        #two cases (if csv already exists, if we have to make it)
