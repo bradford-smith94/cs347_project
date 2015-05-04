@@ -1,6 +1,6 @@
 # Bradford Smith and David Ott
 # CS 347 Assignment 3
-# AbsenceCheck ac-attendance.py
+# AbsenceCheck ac_attendance.py
 # "I pledge my honor that I have abided by the Stevens Honor System."
 #####################################################################
 #import csv to read .csv files

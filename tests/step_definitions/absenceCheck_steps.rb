@@ -9,19 +9,22 @@ end
 
 #steps for Absent.feature
 When(/^the attendance is taken$/) do
-	@output = `ruby tests/step_definitions/attendance.rb #{@input}`
+	@output = `cd src/ && python cucumber_attendance.py #{@input}`
+    raise('Attendance failed') unless $?.success?
 end
 
 #steps for Notify.feature
 When(/^the notifications are sent$/) do
-	@output = `ruby tests/step_definitions/notify.rb #{@input}`
+	@output = `cd src/ && python cucumber_notify.py #{@input}`
+    raise('Notify failed') unless $?.success?
 end
 
 #steps for Stat.feature
 When(/^the stats are calculated$/) do
-	@output = `ruby tests/step_definitions/stats.rb #{@input}`
+	@output = `cd src/ && python cucumber_stats.py #{@input}`
+    raise('Stats failed') unless $?.success?
 end
 
 Then(/^the output should be "(.*?)"$/) do |arg1|
-	raise('Error') unless @output == arg1
+	raise("Error: Expected: #{arg1} Given: #{@output}") unless (@output == arg1)
 end
