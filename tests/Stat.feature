@@ -3,13 +3,13 @@
 #3/8/15
 ##############################
 Feature: Stat
-	
+
 	Some scenarios to test the program's ability to calculate statistics
 		(tallying the total number of a student's absences)
-	
+
 	Scenario Outline:
 		Given the input "<name> <attendance> <total>"
-		When the program is run
+		When the stats are calculated
 		Then the output should be "<new-total>"
 
 	Examples:

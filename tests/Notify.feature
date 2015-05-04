@@ -8,7 +8,7 @@ Feature: Notify
 
 	Scenario Outline:
 		Given the input "<email> <attendance>"
-		When the program is run
+		When the notifications are sent
 		Then the output should be "<send-email?>"
 
 	Examples:

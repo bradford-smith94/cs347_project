@@ -3,14 +3,14 @@
 #3/8/15
 ##############################
 Feature: Absent
-	
+
 	Some scenarios to test the program's ability to mark students absent
 
 	Scenario Outline:
 		Given the input "<name> <here?>"
-		When the program is run
+		When the attendance is taken
 		Then the output should be "<status>"
-	
+
 	Examples:
 		| name	| here?	| status	|
 		| Bob	| y		| present	|
