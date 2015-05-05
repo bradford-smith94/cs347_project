@@ -80,9 +80,10 @@ def main():
 		N = False
 		var = input("Present?: ")
 		if var == Y:
-			student.set_attendance(Y)
-		else:
-			student.set_attendance(N)	
+			student.isHere
+		elif var == N:
+			student.isHere = False	
+		print student.isHere
 		attendance.update_listOfAbsentStudents()
 		attendance.get_listOfAbsentStudents()
 		print attendance.listOfAbsentStudents
