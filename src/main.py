@@ -12,20 +12,37 @@ from student import student
 from admin import admin
 from teacher import teacher
 from ac_stats import ac_stats
+
 #module that handles command line arguments
 import sys
 import csv
 import os
+
 def main():
+    #vars
+    attendance = ac_attendance()
+    config = setup_config()
+
+    #we now need to take attendence and set the listOfAbsentStudents
+    print("Type 'Y' if student is here")
+    attendance.parse_file('test.csv')
+    it = iter(attendance.listOfStudents)
+    for student in it:
+        print(student.name)
+        Y = student.isHere
+        N = 0
+        var = input("Present?: ")
+        if var == N:
+            it.next()
+
+def setup_config():
     #vars
     teacher_name = ""
     teacher_email = ""
     teacher_pw = ""
     class_descript = ""
-    attendance = ac_attendance()
     config = ac_config()
-	
-    
+
     #prompting teacher to enter name
     #loop executes until user enters something (string cannot be empty)
     while True:
@@ -67,25 +84,8 @@ def main():
     #initialize the config object
     config.set_teacher(teacher1)
     config.set_class_descrip(classDescrip)
-    
-    while True:
-    #we now need to take attendence and set the listOfAbsentStudents
-    	print("Type 'Y' if student is here")
-	
-	attendance.parse_file('test.csv')
-	it = iter(attendance.listOfStudents)		
-	for student in it:
-		print(student.name)
-		Y = student.isHere
-		N = 0
-		var = input("Present?: ")
-		if var == N:
-			it.next()
-	break
 
+    return config
 
-		
-	
-    
-
+#call main to run the program
 main()
