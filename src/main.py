@@ -70,17 +70,22 @@ def main():
     
     while True:
     #we now need to take attendence and set the listOfAbsentStudents
-    	print("Type 'Y' if student is here")
+    	print("Type 'Y' if student is here and 'N' is student is absent")
 	
 	attendance.parse_file('test.csv')
 	it = iter(attendance.listOfStudents)		
 	for student in it:
 		print(student.name)
-		Y = student.isHere
-		N = 0
+		Y = True
+		N = False
 		var = input("Present?: ")
-		if var == N:
-			it.next()
+		if var == Y:
+			student.set_attendance(Y)
+		else:
+			student.set_attendance(N)	
+		attendance.update_listOfAbsentStudents()
+		attendance.get_listOfAbsentStudents()
+		print attendance.listOfAbsentStudents
 	break
 
 
