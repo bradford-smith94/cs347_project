@@ -30,7 +30,7 @@ class ac_stats:
     #pre:takes in a list of students lst, and optionally a filename
     #post:saves cumulative absences in a csv file, and if admin.get_request
     #   notifies the admin
-<<<<<<< HEAD
+#<<<<<<< HEAD
     
 
     def save_stats(self, file, lst):
@@ -66,7 +66,7 @@ class ac_stats:
         #if student is absent incremenet absences
         #read absences from csv parse to int and increment
         #two cases (if csv already exists, if we have to make it)
-=======
+#=======
     def save_stats(self, lst, file="cumulative.csv"):
         #open csv, check if csv is empty (first time ran)
         with open("cumulative.csv") as csv_file:
@@ -100,4 +100,4 @@ class ac_stats:
                         else:
                             cumm_attendance = 1
                         #TODO: write a new line to csv
->>>>>>> 412c78bd8a7a66cd8c200d1c7367bb07448689e8
+#>>>>>>> 412c78bd8a7a66cd8c200d1c7367bb07448689e8

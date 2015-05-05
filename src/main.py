@@ -79,7 +79,7 @@ def main():
 		Y = student.isHere
 		N = 0
 		var = input("Present?: ")
-		if var == N and it.next() != 0:
+		if var == N:
 			it.next()
 	break
 
