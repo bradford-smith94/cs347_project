@@ -23,17 +23,26 @@ def main():
     attendance = ac_attendance()
     config = setup_config()
 
+while True:
     #we now need to take attendence and set the listOfAbsentStudents
-    print("Type 'Y' if student is here")
-    attendance.parse_file('test.csv')
-    it = iter(attendance.listOfStudents)
-    for student in it:
-        print(student.name)
-        Y = student.isHere
-        N = 0
-        var = input("Present?: ")
-        if var == N:
-            it.next()
+    	print("Type 'Y' if student is here and 'N' is student is absent")
+	
+	attendance.parse_file('test.csv')
+	it = iter(attendance.listOfStudents)		
+	for student in it:
+		print(student.name)
+		Y = True
+		N = False
+		var = input("Present?: ")
+		if var == Y:
+			student.isHere
+		elif var == N:
+			student.isHere = False	
+		print student.isHere
+		attendance.update_listOfAbsentStudents()
+		attendance.get_listOfAbsentStudents()
+		print attendance.listOfAbsentStudents
+	break
 
 def setup_config():
     #vars
@@ -84,7 +93,6 @@ def setup_config():
     #initialize the config object
     config.set_teacher(teacher1)
     config.set_class_descrip(classDescrip)
-
     return config
 
 #call main to run the program
