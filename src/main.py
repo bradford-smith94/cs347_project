@@ -30,13 +30,16 @@ def main():
     it = iter(attendance.listOfStudents)
     for student in it:
         print(student.name)
-        Y = True
-        N = False
-        var = input("Present?: ")
-        if var == Y:
-            student.isHere
-        elif var == N:
-            student.isHere = False
+        #Y = True
+        #N = False
+        var = str(input("Present?: "))
+        while var != "Y" and var != "N":
+        	var = input("please enter valid character: ")
+        if var == "Y":
+        	student.isHere
+        elif var == "N":
+        	student.isHere = False	
+          	
         print(student.isHere)
         print(attendance.get_listOfAbsentStudents)
 
