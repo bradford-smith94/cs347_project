@@ -20,9 +20,9 @@ class student(person):
     #post:sets the isHere variable to here
     def set_attendance(self, here):
         if(here):
-            isHere = True
+            self.isHere = True
         else:
-            isHere = False
+            self.isHere = False
 
     #pre:none
     #post:returns the isHere variable

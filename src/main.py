@@ -30,18 +30,18 @@ def main():
     it = iter(attendance.listOfStudents)
     for student in it:
         print(student.name)
-        #Y = True
-        #N = False
-        var = str(input("Present?: "))
-        while var != "Y" and var != "N":
-        	var = input("please enter valid character: ")
-        if var == "Y":
-        	student.isHere
-        elif var == "N":
-        	student.isHere = False	
-          	
-        print(student.isHere)
-        print(attendance.get_listOfAbsentStudents)
+        var = str(raw_input("Present?: "))
+        var = var.lower()
+        while var != "y" and var != "n":
+            var = str(raw_input("Please enter valid character: "))
+            var = var.lower()
+        if var == "y":
+            student.set_attendance(True)
+        elif var == "n":
+            student.set_attendance(False)
+
+        print(student.get_attendance())
+        print(attendance.get_listOfAbsentStudents())
 
 def setup_config():
     #vars
