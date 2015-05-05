@@ -28,8 +28,6 @@ def main():
     
     #prompting teacher to enter name
     #loop executes until user enters something (string cannot be empty)
-    
-    
     while True:
         name = raw_input("Please enter your name: ")
         type(name)
