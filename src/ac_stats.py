@@ -32,28 +32,30 @@ class ac_stats:
     #   notifies the admin
     
 
-    def save_stats(self, file="cumulative.csv", lst):
+    def save_stats(self, file, lst):
+    	file="cumulative.csv"
         #open csv, check if csv is empty (first time ran)
         with open("cumulative.csv") as csv_file:
-        if os.stat(csv_file).st_size == 0:
+        	if os.stat(csv_file).st_size == 0:
         	#print("The csv file is empty")
         	#write and read
-        	writer = csv.writer(csv_file, delimiter = ',')       
-        	int cumm_attendence
-        	for student in listOfStudents:
-        		if student.isHere:
-        			cumm_attendence = 0
-        		else:
-        			cumm_attendence = 1	
-        		line = [student.name, student.email, cumm_attendence].split(",")
+        		writer = csv.writer(csv_file, delimiter = ',')       
+        		cumm_attendence
+        		for student in listOfStudents:
+        			if student.isHere:
+        				cumm_attendence = 0
+        			else:
+        				cumm_attendence = 1	
+        			line = [student.name, student.email, cumm_attendence].split(",")
         		writer.writerow(line)
-        else:
-        #comparing list of absent students with current cumulative csv and updating cumulative attendence 
-        	csv_reader = csv.reader(csv_file) 
-        	for student in listOfAbsentStudents:
-        		for line in csv_reader:
-        			if student.name == line[0] and student.isHere        		
-        			cumm_attendence += 1
+        	else:
+        	#comparing list of absent students with current cumulative csv and updating cumulative attendence 
+        		csv_reader = csv.reader(csv_file) 
+        		for student in listOfAbsentStudents:
+        			for line in csv_reader:
+        				if student.name == line[0] and student.isHere:        		
+        					cumm_attendence += 1
+        					
         	       
         
 
