@@ -16,8 +16,7 @@ def create_student(name, isHere):
     else:
         isHere = False
 
-    test = student(name, "filler@email.com", isHere)
-    return test
+    return student(name, "filler@email.com", isHere)
 
 student = create_student(sys.argv[1], sys.argv[2])
 if (student.isHere):
