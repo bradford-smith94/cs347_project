@@ -26,6 +26,7 @@ def main():
     notify = ac_notify()
 
     #we now need to take attendence and set the listOfAbsentStudents
+    print("")
     print("Please take attendance:")
     print("#######################")
 
@@ -49,6 +50,10 @@ def main():
     admin1 = setup_admin()
     stats.set_admin(admin1)
     stats.save_stats(attendance.get_listOfStudents())
+
+    #use notify to email absent students
+    for i in attendance.get_listOfAbsentStudents():
+        notify.send(config, i)
 
 
 def setup_admin():
