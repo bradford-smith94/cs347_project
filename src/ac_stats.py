@@ -57,9 +57,10 @@ class ac_stats:
                 for student in lst:
                     updated = False
                     for line in csv_reader:
-                        if student.get_name() == str(line[0]) and not student.get_attendance():
+                        if student.get_name() == str(line[0]):
                             cumm_attendance = int(line[2])
-                            cumm_attendance += 1
+                            if not student.get_attendance():
+                                cumm_attendance += 1
                             update = [student.get_name(), student.get_email(), cumm_attendance]
                             csv_writer.writerow(update)
                             updated = True

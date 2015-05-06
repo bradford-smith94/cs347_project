@@ -24,7 +24,6 @@ def main():
     config = setup_config()
     stats = ac_stats()
     notify = ac_notify()
-    admin1 = setup_admin()
 
     #we now need to take attendence and set the listOfAbsentStudents
     print("Please take attendance:")
@@ -42,11 +41,12 @@ def main():
             student.set_attendance(False)
         else:
             while var != "y" and var != "n":
-                var = str(raw_input("Please enter valid character: "))
+                var = str(raw_input("Please enter valid character (Y or N): "))
                 var = var.lower()
 
 
     #setting up stats
+    admin1 = setup_admin()
     stats.set_admin(admin1)
     stats.save_stats(attendance.get_listOfStudents())
 
@@ -69,7 +69,7 @@ def setup_admin():
         admin_bool = False
     else:
         while boolval != "y" and boolval != "n":
-            boolval = str(raw_input("Please enter a valid character: "))
+            boolval = str(raw_input("Please enter a valid character (Y or N): "))
             boolval = boolval.lower()
     return admin(admin_name, admin_email, admin_bool)
 
