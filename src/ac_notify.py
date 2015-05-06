@@ -15,18 +15,20 @@ from admin import admin
 #this class is used to send the config file to absent students
 class ac_notify:
 
-     #pre:takes in a (student or admin) recipient and an ac_config config
+    #pre:takes in a (student or admin) recipient and an ac_config config
     #   optionally takes in a csv file (required to send to admin)
     #post:creates and returns a MIMEText email message
     def create_message(self, recipient, config, csv=""):
-        if csv == "":
+        if isinstance(recipient, student) and csv == "":
+            #send to student
             greet = ("Dear %s \nHere is what you missed in class:\n" %(recipient.get_name()))
             body = (config.get_class_descrip())
             msg = MIMEText(greet + body)
             msg["Subject"] = "Missed Class"
         elif isinstance(recipient, admin):
-            greet = MIMEText("Dear %s \nHere are the class total absences:\n" %(recipient.get_name()))
-            body = MIMEText(csv)
+            #send to admin
+            greet = ("Dear %s \nHere are the class total absences:\n" %(recipient.get_name()))
+            body = csv
             msg = greet + body
             msg["Subject"] = "Class Cumulative Absences"
         else:
@@ -53,7 +55,7 @@ class ac_notify:
             print("ERROR: recipient is of wrong type or csv file was not given")
             return
         try:
-            server.sendmail(sender.get_email(), recipient.get_email(), message.as_string)
+            server.sendmail(str(sender.get_email()), str(recipient.get_email()), message.as_string())
         except:
             print("Message to %s did not send" %(recipient.get_name()))
         server.quit()
