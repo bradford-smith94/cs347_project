@@ -5,10 +5,12 @@
 #####################################################################
 #import csv to read and save .csv files
 import csv
+
 #import student and admin classes
 from student import student
 from admin import admin
 from ac_notify import ac_notify
+
 #import python stat function
 import os
 
@@ -38,11 +40,11 @@ class ac_stats:
                 writer = csv.writer(csv_file, delimiter = ',')
                 cumm_attendance = 0
                 for student in lst:
-                    if student.isHere:
+                    if student.get_attendance():
                         cumm_attendance = 0
                     else:
                         cumm_attendance = 1
-                    line = [student.name, student.email, cumm_attendance].split(",")
+                    line = [student.get_name(), student.get_email(), cumm_attendance].split(",")
                     writer.writerow(line)
             else:
             #comparing list of absent students with current cumulative csv and updating cumulative attendance
@@ -51,14 +53,16 @@ class ac_stats:
                     updated = False
                     for line in csv_reader:
                         if student.name == line[0] and not student.isHere:
-                            #TODO: need to get cumm_attendance from csv
+                            cumm_attendance = int(line[2])
                             cumm_attendance += 1
-                            #TODO: write back to csv
+                            line[2] = cumm_attendance
                             updated = True
                     if not updated:
                         #this is a new student add a line in csv
-                        if student.isHere:
+                        if student.get_attendance():
                             cumm_attendance = 0
                         else:
                             cumm_attendance = 1
-                        #TODO: write a new line to csv
+                        csv_writer = csv.writer(csv_file, delimiter = ',')
+                        line = [student.get_name(), student.get_email(), cumm_attendance].split(",")
+                        writer.writerow(line)
