@@ -32,11 +32,11 @@ class ac_stats:
     #pre:takes in a list of students lst, and optionally a filename
     #post:saves cumulative absences in a csv file, and if admin.get_request
     #   notifies the admin
-    def save_stats(self, lst, file="cumulative.csv"):
-        #open csv, check if csv is empty (first time ran)
-        with open(file, 'w') as csv_file:
-            if os.stat("cumulative.csv").st_size == 0:
-                #write and read
+    def save_stats(self, lst, outfile="cumulative.csv"):
+        #open csv for reading and writing (r+), check if csv is empty (first time ran)
+        with open(outfile, 'r+') as csv_file:
+            if os.stat(csv_file).st_size == 0:
+                #file is empty, write it ourselves
                 writer = csv.writer(csv_file, delimiter = ',')
                 cumm_attendance = 0
                 for student in lst:
@@ -44,29 +44,27 @@ class ac_stats:
                         cumm_attendance = 0
                     else:
                         cumm_attendance = 1
-                    line = [student.get_name(), student.get_email(), cumm_attendance]             
+                    line = [student.get_name(), student.get_email(), cumm_attendance]
 
                     writer.writerow(line)
-		csv_file.close()
-                    
             else:
-            	with open(file, 'r') as csv_file:
-            	#comparing list of absent students with current cumulative csv and updating cumulative attendance
-            		csv_reader = csv.reader(csv_file)
-            		for student in lst:
-            			updated = False
-                    	for line in csv_reader:
-                        	if student.name == str(line[0]) and not student.isHere:
-                        		cumm_attendance = int(line[2])
-                            	cumm_attendance += 1
-                            	line[2] = cumm_attendance
-                            	updated = True
-                    	if not updated:
+                #file is not empty, read and update
+                csv_reader = csv.reader(csv_file)
+                for student in lst:
+                    updated = False
+                    for line in csv_reader:
+                        if student.get_name() == str(line[0]) and not student.get_attendance():
+                            cumm_attendance = int(line[2])
+                            cumm_attendance += 1
+                            line[2] = cumm_attendance
+                            updated = True
+                    if not updated:
                         #this is a new student add a line in csv
-                        	if student.get_attendance():
-                        		cumm_attendance = 0
-                        	else:
-                        		cumm_attendance = 1
-                        		csv_writer = csv.writer(csv_file, delimiter = ',')
-                        		line = [student.get_name(), student.get_email(), cumm_attendance].split(",")
-                        		writer.writerow(line)
+                        if student.get_attendance():
+                            cumm_attendance = 0
+                        else:
+                            cumm_attendance = 1
+                        csv_writer = csv.writer(csv_file, delimiter = ',')
+                        line = [student.get_name(), student.get_email(), cumm_attendance].split(",")
+                        writer.writerow(line)
+            csv_file.close()

@@ -24,58 +24,61 @@ def main():
     config = setup_config()
     stats = ac_stats()
     notify = ac_notify()
-    admin = setup_admin()
-    
+    admin1 = setup_admin()
+
     #we now need to take attendence and set the listOfAbsentStudents
-    print("Type 'Y' if student is here and 'N' is student is absent")
+    print("Please take attendance:")
+    print("#######################")
 
     attendance.parse_file('test.csv')
     it = iter(attendance.listOfStudents)
     for student in it:
         print(student.name)
-        var = str(raw_input("Present?: "))
+        var = str(raw_input("Present? (Y or N): "))
         var = var.lower()
-        while var != "y" and var != "n":
-            var = str(raw_input("Please enter valid character: "))
-            var = var.lower()
         if var == "y":
             student.set_attendance(True)
         elif var == "n":
             student.set_attendance(False)
-	
-	
-	
-		#setting up stats
-	lst = attendance.listOfStudents
-	file = "cumulative.csv"
-	stats.save_stats(lst, file)
-	
-	
-def setup_admin():		
-	    #setting up optional email to administrators
-	boolval = raw_input("Would you like to send the cumulative statistics to an admisistrator?(Y or N): ")
-	boolval = boolval.lower()
-	if boolval == "n":
-		print("Thank you for using AbsenceCheck!")
-		exit()
-	elif boolval == "y":
-		adminName = raw_input("Please enter Administrators name: ")
-		admin.name = adminName 	 
-		adminEmail = raw_input("Please enter Administrators email: ")
-		admin.email = adminEmail 
-		csv = "cumulative.csv"
-		notify.create_message(admin, csv)
-		notify.send(admin, csv)
-	return admin
-		
-		
-def setup_config():
+        else:
+            while var != "y" and var != "n":
+                var = str(raw_input("Please enter valid character: "))
+                var = var.lower()
+
+
+    #setting up stats
+    stats.set_admin(admin1)
+    stats.save_stats(attendance.get_listOfStudents())
+
+
+def setup_admin():
+    #vars
+    admin_name = ""
+    admin_email = ""
+    admin_bool = True
+
+    #setting up optional email to administrators
+    boolval = raw_input("Would you like to send the cumulative absence statistics to an admisistrator? (Y or N): ")
+    boolval = boolval.lower()
+    if boolval == "y":
+        adminName = raw_input("Please enter Administrators name: ")
+        admin_name = adminName
+        adminEmail = raw_input("Please enter Administrators email: ")
+        admin_email = adminEmail
+    elif boolval == "n":
+        admin_bool = False
+    else:
+        while boolval != "y" and boolval != "n":
+            boolval = str(raw_input("Please enter a valid character: "))
+            boolval = boolval.lower()
+    return admin(admin_name, admin_email, admin_bool)
+
+
+def setup_teacher():
     #vars
     teacher_name = ""
     teacher_email = ""
     teacher_pw = ""
-    class_descript = ""
-    config = ac_config()
 
     #prompting teacher to enter name
     #loop executes until user enters something (string cannot be empty)
@@ -104,7 +107,15 @@ def setup_config():
             break
     teacher_pw = password
 
-    teacher1 = teacher(teacher_name, teacher_email, teacher_pw)
+    return teacher(teacher_name, teacher_email, teacher_pw)
+
+
+def setup_config():
+    #vars
+    teacher1 = setup_teacher()
+    class_descript = ""
+    config = ac_config()
+
 
     #prompting teacher to enter a class description
     #loop executes until user enters something (string cannot be empty)
@@ -119,8 +130,6 @@ def setup_config():
     config.set_teacher(teacher1)
     config.set_class_descrip(classDescrip)
     return config
-    
-    
 
 
 #call main to run the program
