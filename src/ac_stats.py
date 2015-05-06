@@ -5,14 +5,17 @@
 #####################################################################
 #import csv to read and save .csv files
 import csv
+#import os to get file properties
+import os
+#import NamedTemporaryFile to make temp files for updating the .csv
+from tempfile import NamedTemporaryFile
+#import shutil to rename files
+import shutil
 
-#import student and admin classes
+#import student, admin and notify classes
 from student import student
 from admin import admin
 from ac_notify import ac_notify
-
-#import python stat function
-import os
 
 #ac_stats
 #this class is used to save cumulative attendance statistics to a csv file
@@ -35,7 +38,7 @@ class ac_stats:
     def save_stats(self, lst, outfile="cumulative.csv"):
         #open csv for reading and writing (r+), check if csv is empty (first time ran)
         with open(outfile, 'r+') as csv_file:
-            if os.stat(csv_file).st_size == 0:
+            if os.stat(outfile).st_size == 0:
                 #file is empty, write it ourselves
                 writer = csv.writer(csv_file, delimiter = ',')
                 cumm_attendance = 0
@@ -45,26 +48,30 @@ class ac_stats:
                     else:
                         cumm_attendance = 1
                     line = [student.get_name(), student.get_email(), cumm_attendance]
-
                     writer.writerow(line)
             else:
                 #file is not empty, read and update
+                temp = NamedTemporaryFile(delete=False)
                 csv_reader = csv.reader(csv_file)
+                csv_writer = csv.writer(temp, delimiter = ',') #write updates to a tempfile
                 for student in lst:
                     updated = False
                     for line in csv_reader:
                         if student.get_name() == str(line[0]) and not student.get_attendance():
                             cumm_attendance = int(line[2])
                             cumm_attendance += 1
-                            line[2] = cumm_attendance
+                            update = [student.get_name(), student.get_email(), cumm_attendance]
+                            csv_writer.writerow(update)
                             updated = True
+                            break
                     if not updated:
                         #this is a new student add a line in csv
                         if student.get_attendance():
                             cumm_attendance = 0
                         else:
                             cumm_attendance = 1
-                        csv_writer = csv.writer(csv_file, delimiter = ',')
-                        line = [student.get_name(), student.get_email(), cumm_attendance].split(",")
-                        writer.writerow(line)
+                        line = [student.get_name(), student.get_email(), cumm_attendance]
+                        csv_writer.writerow(line)
             csv_file.close()
+            temp.close()
+            shutil.move(temp.name, outfile) #replace old file with the temp file
