@@ -22,6 +22,7 @@ def main():
     #vars
     attendance = ac_attendance()
     config = setup_config()
+    stats = ac_stats()
 
     #we now need to take attendence and set the listOfAbsentStudents
     print("Type 'Y' if student is here and 'N' is student is absent")
@@ -39,9 +40,11 @@ def main():
             student.set_attendance(True)
         elif var == "n":
             student.set_attendance(False)
-
-        print(student.get_attendance())
-        print(attendance.get_listOfAbsentStudents())
+	
+	#setting up stats
+	lst = attendance.listOfStudents
+	file = "cumulative.csv"
+	stats.save_stats(lst, file)
 
 def setup_config():
     #vars

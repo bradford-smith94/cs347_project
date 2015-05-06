@@ -20,9 +20,9 @@ class ac_attendance:
         with open(f, 'r') as csvfile:
             lineReader = csv.reader(csvfile, delimiter=',')
             for line in lineReader:
-                fn = line[0] #first name
-                ln = line[1] #last name
-                em = line[2] #email
+                fn = str(line[0]) #first name
+                ln = str(line[1]) #last name
+                em = str(line[2]) #email
                 new_student = student(" ".join([fn, ln]), em)
                 self.listOfStudents.append(new_student)
 
