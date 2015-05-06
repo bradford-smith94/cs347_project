@@ -23,7 +23,9 @@ def main():
     attendance = ac_attendance()
     config = setup_config()
     stats = ac_stats()
-
+    notify = ac_notify()
+    admin = setup_admin()
+    
     #we now need to take attendence and set the listOfAbsentStudents
     print("Type 'Y' if student is here and 'N' is student is absent")
 
@@ -41,11 +43,32 @@ def main():
         elif var == "n":
             student.set_attendance(False)
 	
-	#setting up stats
+	
+	
+		#setting up stats
 	lst = attendance.listOfStudents
 	file = "cumulative.csv"
 	stats.save_stats(lst, file)
-
+	
+	
+def setup_admin():		
+	    #setting up optional email to administrators
+	boolval = raw_input("Would you like to send the cumulative statistics to an admisistrator?(Y or N): ")
+	boolval = boolval.lower()
+	if boolval == "n":
+		print("Thank you for using AbsenceCheck!")
+		exit()
+	elif boolval == "y":
+		adminName = raw_input("Please enter Administrators name: ")
+		admin.name = adminName 	 
+		adminEmail = raw_input("Please enter Administrators email: ")
+		admin.email = adminEmail 
+		csv = "cumulative.csv"
+		notify.create_message(admin, csv)
+		notify.send(admin, csv)
+	return admin
+		
+		
 def setup_config():
     #vars
     teacher_name = ""
@@ -96,6 +119,9 @@ def setup_config():
     config.set_teacher(teacher1)
     config.set_class_descrip(classDescrip)
     return config
+    
+    
+
 
 #call main to run the program
 main()

@@ -59,7 +59,7 @@ class ac_stats:
                         	if student.name == str(line[0]) and not student.isHere:
                         		cumm_attendance = int(line[2])
                             	cumm_attendance += 1
-                            	#line[2] = cumm_attendance
+                            	line[2] = cumm_attendance
                             	updated = True
                     	if not updated:
                         #this is a new student add a line in csv
