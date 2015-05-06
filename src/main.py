@@ -50,6 +50,11 @@ def main():
     admin1 = setup_admin()
     stats.set_admin(admin1)
     stats.save_stats(attendance.get_listOfStudents())
+	
+	#sending the config to ansent students
+    for i in attendance.get_listOfAbsentStudents():
+		notify.send(config, i)
+
 
     #use notify to email absent students
     for i in attendance.get_listOfAbsentStudents():
