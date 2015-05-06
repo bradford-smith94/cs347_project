@@ -20,6 +20,7 @@ class ac_attendance:
         with open(f, 'r') as csvfile:
             lineReader = csv.reader(csvfile, delimiter=',')
             for line in lineReader:
+                print("check")
                 fn = str(line[0]) #first name
                 ln = str(line[1]) #last name
                 em = str(line[2]) #email
