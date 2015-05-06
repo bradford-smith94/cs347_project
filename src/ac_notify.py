@@ -6,6 +6,7 @@
 #import email handling classes
 import smtplib
 from email.mime.text import MIMEText
+import csv
 #import person class
 from person import person
 from student import student
@@ -18,18 +19,32 @@ class ac_notify:
     #pre:takes in a (student or admin) recipient and an ac_config config
     #   optionally takes in a csv file (required to send to admin)
     #post:creates and returns a MIMEText email message
-    def create_message(self, recipient, config, csv=""):
-        if isinstance(recipient, student) and csv == "":
+    def create_message(self, recipient, config, statsFile=""):
+        if isinstance(recipient, student) and statsFile == "":
             #send to student
-            greet = ("Dear %s \nHere is what you missed in class:\n" %(recipient.get_name()))
+            greet = ("Dear %s, \nHere is what you missed in class:\n\n" %(recipient.get_name()))
             body = (config.get_class_descrip())
-            msg = MIMEText(greet + body)
+            end = ("\nFrom %s" %(config.get_teacher().get_name()))
+            msg = MIMEText(greet + body + end)
             msg["Subject"] = "Missed Class"
         elif isinstance(recipient, admin):
             #send to admin
-            greet = ("Dear %s \nHere are the class total absences:\n" %(recipient.get_name()))
-            body = csv
-            msg = greet + body
+            greet = ("Dear %s \nHere are the class total absences:\n\n" %(recipient.get_name()))
+            body = ("Student Name |\tStudent Email |\tTotal Absences |\n")
+            body += "=" * 45
+            body += "\n"
+            with open(statsFile, 'r') as csvfile:
+                reader = csv.reader(csvfile, delimiter=',')
+                for line in reader:
+                    body += str(line[0])
+                    body += " |\t"
+                    body += str(line[1])
+                    body += " |\t"
+                    body += str(line[2])
+                    body += " |\n"
+                csvfile.close()
+            end = ("\nFrom %s" %(config.get_teacher().get_name()))
+            msg = MIMEText(greet + body + end)
             msg["Subject"] = "Class Cumulative Absences"
         else:
             print("ERROR: recipient is of wrong type or csv file was not given")

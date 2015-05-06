@@ -55,6 +55,9 @@ def main():
     for i in attendance.get_listOfAbsentStudents():
         notify.send(config, i)
 
+    if stats.get_admin().get_admin_request():
+        notify.send(config, stats.get_admin(), "cumulative.csv")
+
 
 def setup_admin():
     #vars
