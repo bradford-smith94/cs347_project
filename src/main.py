@@ -1,23 +1,20 @@
 # Bradford Smith and David Ott
-# CS 347 Assignment 3
+# CS 347 Project
 # AbsenceCheck main.py
 # "I pledge my honor that I have abided by the Stevens Honor System."
 #####################################################################
 #all the imports
+from ac_config import ac_config
 from ac_attendance import ac_attendance
 from ac_notify import ac_notify
-from ac_config import ac_config
+from ac_stats import ac_stats
 from person import person
 from student import student
-from admin import admin
 from teacher import teacher
-from ac_stats import ac_stats
+from admin import admin
 
-#module that handles command line arguments
-import sys
-import csv
-import os
 
+#the main method
 def main():
     #vars
     attendance = ac_attendance()
@@ -30,7 +27,7 @@ def main():
     print("Please take attendance:")
     print("#######################")
 
-    attendance.parse_file('test.csv')
+    attendance.parse_file("class.csv")
     it = iter(attendance.listOfStudents)
     for student in it:
         print(student.name)
@@ -59,6 +56,8 @@ def main():
         notify.send(config, stats.get_admin(), "cumulative.csv")
 
 
+#pre:none
+#post:returns an admin object populated with user data
 def setup_admin():
     #vars
     admin_name = ""
@@ -82,6 +81,8 @@ def setup_admin():
     return admin(admin_name, admin_email, admin_bool)
 
 
+#pre:none
+#post:returns a teacher object populated with user data
 def setup_teacher():
     #vars
     teacher_name = ""
@@ -118,6 +119,8 @@ def setup_teacher():
     return teacher(teacher_name, teacher_email, teacher_pw)
 
 
+#pre:none
+#post:returns an ac_config object populated with user data
 def setup_config():
     #vars
     teacher1 = setup_teacher()

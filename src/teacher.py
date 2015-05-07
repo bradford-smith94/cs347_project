@@ -1,5 +1,5 @@
 # Bradford Smith and David Ott
-# CS 347 Assignment 3
+# CS 347 Project
 # AbsenceCheck teacher.py
 # "I pledge my honor that I have abided by the Stevens Honor System."
 #####################################################################
@@ -20,4 +20,4 @@ class teacher(person):
     #post:returns the variable password
     def get_password(self):
         return self.password
-        
+

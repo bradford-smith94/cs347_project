@@ -1,5 +1,5 @@
 # Bradford Smith and David Ott
-# CS 347 Assignment 3
+# CS 347 Project
 # AbsenceCheck person.py
 # "I pledge my honor that I have abided by the Stevens Honor System."
 #####################################################################
